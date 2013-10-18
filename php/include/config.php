@@ -24,11 +24,11 @@
 
 /* make sure these values refect your actual database/host/user/password */
 $database_type = "mysql";
-$database_default = "cacti";
-$database_hostname = "localhost";
-$database_username = "cactiuser";
-$database_password = "cactiuser";
-$database_port = "3306";
+$database_default = getenv('OPENSHIFT_APP_NAME');
+$database_hostname = getenv('OPENSHIFT_MYSQL_DB_HOST');
+$database_username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+$database_password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+$database_port = getenv('OPENSHIFT_MYSQL_DB_PORT');
 $database_ssl = false;
 
 /*
