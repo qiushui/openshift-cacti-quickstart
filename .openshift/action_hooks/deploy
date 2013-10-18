@@ -1,0 +1,42 @@
+#!/bin/bash
+# This deploy hook gets executed after dependencies are resolved and the
+# build hook has been run but before the application has been started back
+# up again.  This script gets executed directly, so it could be python, php,
+# ruby, etc.
+
+if [ ! -d $OPENSHIFT_DATA_DIR/plugins ]; then
+    cp -r $OPENSHIFT_REPO_DIR/.openshift/cacti/log $OPENSHIFT_DATA_DIR/cacti-log
+fi
+
+if [ ! -d $OPENSHIFT_DATA_DIR/plugins ]; then
+    cp -r $OPENSHIFT_REPO_DIR/.openshift/cacti/rra $OPENSHIFT_DATA_DIR/cacti-rra
+fi
+
+ln -sf $OPENSHIFT_DATA_DIR/cacti-log $OPENSHIFT_REPO_DIR/php/log
+ln -sf $OPENSHIFT_DATA_DIR/cacti-rra $OPENSHIFT_REPO_DIR/php/rra
+
+set -e
+
+if [ -z "$OPENSHIFT_MYSQL_DB_HOST" ]
+then
+    echo 1>&2
+    echo "Could not find mysql database.  Please run:" 1>&2
+    echo "rhc cartridge add -a $OPENSHIFT_APP_NAME -c mysql-5.1" 1>&2
+    echo "then make a sample commit (add whitespace somewhere) and re-push" 1>&2
+    echo 1>&2
+fi
+
+if [ -z "$OPENSHIFT_MYSQL_DB_HOST" ]
+then
+    exit 5
+fi
+
+# Confirm database exists, if not create it
+if ! /usr/bin/mysql -u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT" -e "select * from cdef;" "$OPENSHIFT_APP_NAME" > /dev/null 2>&1
+then
+    echo
+	echo "Installing database..."
+    /usr/bin/mysql -u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT" $OPENSHIFT_APP_NAME < $OPENSHIFT_REPO_DIR/php/cacti.sql
+else
+    echo "Database already configured."
+fi
