@@ -96,7 +96,7 @@ function find_best_path($binary_name) {
 	if ($config["cacti_server_os"] == "win32") {
 		$search_paths = array("c:/usr/bin", "c:/cacti", "c:/rrdtool", "c:/spine", "c:/php", "c:/progra~1/php", "c:/net-snmp/bin", "c:/progra~1/net-snmp/bin", "d:/usr/bin", "d:/net-snmp/bin", "d:/progra~1/net-snmp/bin", "d:/cacti", "d:/rrdtool", "d:/spine", "d:/php", "d:/progra~1/php");
 	}else{
-		$search_paths = array(getenv('OPENSHIFT_DATA_DIR')."/bin","/bin", "/sbin", "/usr/bin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin");
+		$search_paths = array("/bin", "/sbin", "/usr/bin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin");
 	}
 
 	for ($i=0; $i<count($search_paths); $i++) {
@@ -122,7 +122,7 @@ if ($config["cacti_server_os"] == "unix") {
 	}else if (!empty($which_rrdtool)) {
 		$input["path_rrdtool"]["default"] = $which_rrdtool;
 	}else{
-		$input["path_rrdtool"]["default"] = getenv('OPENSHIFT_DATA_DIR')."bin/rrdtool";
+		$input["path_rrdtool"]["default"] = "/usr/local/bin/rrdtool";
 	}
 }elseif ($config["cacti_server_os"] == "win32") {
 	$which_rrdtool = find_best_path("rrdtool.exe");
@@ -172,7 +172,7 @@ if ($config["cacti_server_os"] == "unix") {
 	}else if (!empty($which_snmpwalk)) {
 		$input["path_snmpwalk"]["default"] = $which_snmpwalk;
 	}else{
-		$input["path_snmpwalk"]["default"] = getenv('OPENSHIFT_DATA_DIR')."bin/snmpwalk";
+		$input["path_snmpwalk"]["default"] = "/usr/local/bin/snmpwalk";
 	}
 }elseif ($config["cacti_server_os"] == "win32") {
 	$which_snmpwalk = find_best_path("snmpwalk.exe");
@@ -197,7 +197,7 @@ if ($config["cacti_server_os"] == "unix") {
 	}else if (!empty($which_snmpget)) {
 		$input["path_snmpget"]["default"] = $which_snmpget;
 	}else{
-		$input["path_snmpget"]["default"] = getenv('OPENSHIFT_DATA_DIR')."bin/snmpget";
+		$input["path_snmpget"]["default"] = "/usr/local/bin/snmpget";
 	}
 }elseif ($config["cacti_server_os"] == "win32") {
 	$which_snmpget = find_best_path("snmpget.exe");
@@ -222,7 +222,7 @@ if ($config["cacti_server_os"] == "unix") {
 	}else if (!empty($which_snmpbulkwalk)) {
 		$input["path_snmpbulkwalk"]["default"] = $which_snmpbulkwalk;
 	}else{
-		$input["path_snmpbulkwalk"]["default"] = getenv('OPENSHIFT_DATA_DIR')."bin/snmpbulkwalk";
+		$input["path_snmpbulkwalk"]["default"] = "/usr/local/bin/snmpbulkwalk";
 	}
 }elseif ($config["cacti_server_os"] == "win32") {
 	$which_snmpbulkwalk = find_best_path("snmpbulkwalk.exe");
@@ -247,7 +247,7 @@ if ($config["cacti_server_os"] == "unix") {
 	}else if (!empty($which_snmpgetnext)) {
 		$input["path_snmpgetnext"]["default"] = $which_snmpgetnext;
 	}else{
-		$input["path_snmpgetnext"]["default"] = getenv('OPENSHIFT_DATA_DIR')."bin/snmpgetnext";
+		$input["path_snmpgetnext"]["default"] = "/usr/local/bin/snmpgetnext";
 	}
 }elseif ($config["cacti_server_os"] == "win32") {
 	$which_snmpgetnext = find_best_path("snmpgetnext.exe");
