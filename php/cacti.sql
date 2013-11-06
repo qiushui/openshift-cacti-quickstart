@@ -1888,7 +1888,7 @@ CREATE TABLE host (
 -- Dumping data for table `host`
 --
 
-INSERT INTO `host` VALUES (1, 8, 'Localhost', '127.0.0.1', '', 'public', 0, '', '', 'MD5', '', 'DES', '', 161, 500, 3, 2, 23, 400, 1, 10, 1, '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 9.99999, 0.00000, 0.00000, 0.00000, 0, 0, 100.00000);
+#INSERT INTO `host` VALUES (1, 8, 'Localhost', '127.0.0.1', '', 'public', 0, '', '', 'MD5', '', 'DES', '', 161, 500, 3, 2, 23, 400, 1, 10, 1, '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 9.99999, 0.00000, 0.00000, 0.00000, 0, 0, 100.00000);
 
 --
 -- Table structure for table `host_graph`
@@ -1904,10 +1904,10 @@ CREATE TABLE host_graph (
 -- Dumping data for table `host_graph`
 --
 
-INSERT INTO host_graph VALUES (1,8);
-INSERT INTO host_graph VALUES (1,9);
-INSERT INTO host_graph VALUES (1,10);
-INSERT INTO host_graph VALUES (1,12);
+#INSERT INTO host_graph VALUES (1,8);
+#INSERT INTO host_graph VALUES (1,9);
+#INSERT INTO host_graph VALUES (1,10);
+#INSERT INTO host_graph VALUES (1,12);
 
 --
 -- Table structure for table `host_snmp_cache`
@@ -1953,7 +1953,7 @@ CREATE TABLE host_snmp_query (
 -- Dumping data for table `host_snmp_query`
 --
 
-INSERT INTO host_snmp_query VALUES (1,6,'dskDevice','|query_dskDevice|',0);
+#INSERT INTO host_snmp_query VALUES (1,6,'dskDevice','|query_dskDevice|',0);
 
 --
 -- Table structure for table `host_template`
