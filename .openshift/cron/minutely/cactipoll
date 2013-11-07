@@ -1,12 +1,8 @@
 #!/bin/bash
-if [ ! -f $OPENSHIFT_DATA_DIR/last_run ];
-then
-    touch $OPENSHIFT_DATA_DIR/last_run
-    php $OPENSHIFT_REPO_DIR/php/poller.php > $OPENSHIFT_DATA_DIR/cacti.log 2>&1
-else
- if [[ $(find $OPENSHIFT_DATA_DIR/last_run -mmin +4) ]]; then #run every 5 mins
-   php $OPENSHIFT_REPO_DIR/php/poller.php > $OPENSHIFT_DATA_DIR/cacti.log 2>&1
-   rm -f $OPENSHIFT_DATA_DIR/last_run
-   touch $OPENSHIFT_DATA_DIR/last_run
-  fi  
-fi
+
+if [ ! -f $OPENSHIFT_DATA_DIR/last_run || [ $(find $OPENSHIFT_DATA_DIR/last_run -mmin +4) ]]; then #run every 5 mins
+	php $OPENSHIFT_REPO_DIR/php/poller.php > $OPENSHIFT_DATA_DIR/cacti.log 2>&1
+	rm -f $OPENSHIFT_DATA_DIR/last_run
+	touch $OPENSHIFT_DATA_DIR/last_run
+fi  
+
