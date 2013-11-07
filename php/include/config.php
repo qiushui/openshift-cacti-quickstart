@@ -21,7 +21,7 @@
  | http://www.cacti.net/                                                   |
  +-------------------------------------------------------------------------+
 */
-
+date_default_timezone_set('America/New_York');
 /* make sure these values refect your actual database/host/user/password */
 $database_type = "mysql";
 $database_default = getenv('OPENSHIFT_APP_NAME');
