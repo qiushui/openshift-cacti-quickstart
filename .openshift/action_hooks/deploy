@@ -4,11 +4,11 @@
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
 
-if [ ! -d $OPENSHIFT_DATA_DIR/plugins ]; then
+if [ ! -d $OPENSHIFT_DATA_DIR/cacti-log ]; then
     cp -r $OPENSHIFT_REPO_DIR/.openshift/cacti/log $OPENSHIFT_DATA_DIR/cacti-log
 fi
 
-if [ ! -d $OPENSHIFT_DATA_DIR/plugins ]; then
+if [ ! -d $OPENSHIFT_DATA_DIR/cacti-rra ]; then
     cp -r $OPENSHIFT_REPO_DIR/.openshift/cacti/rra $OPENSHIFT_DATA_DIR/cacti-rra
 fi
 
